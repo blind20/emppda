@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 28
+    greendao{
+        schemaVersion 1
+        daoPackage 'com.tmri.enforcement.app.gen'
+        targetGenDir 'src/main/java'
+    }
+    defaultConfig {
+        applicationId "com.tmri.enforcement.app"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 2
+        versionName "连接执法仪插件版本1.2"
+        multiDexEnabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api project(':latte-core')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'com.koushikdutta.async:androidasync:2.2.1'
+    implementation 'com.android.support:design:28.0.0'
+    //greendao
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    //GreenDaoUpgradeHelper数据库升级
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.1.0'
+    //ButterKnife
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    //权限
+    api 'com.github.hotchemi:permissionsdispatcher:3.3.1'
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    //自动更新
+    implementation 'com.allenliu.versionchecklib:library:2.0.8'
+
+    //cookie持久化
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    implementation 'com.github.gcacace:signature-pad:1.2.1'
+
+
+//    configurations {
+//        all*.exclude group: 'com.android.support', module: 'support-v13'
+//    }
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }
+    }
+}

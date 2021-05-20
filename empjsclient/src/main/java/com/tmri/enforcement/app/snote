@@ -1,0 +1,15 @@
+1、将activity后置
+getActivity().moveTaskToBack(true);
+2、杀死进程
+①android.os.Process.killProcess(android.os.Process.myPid());
+②System.exit(0);
+3、安卓9.0系统已经默认不支持http请求了而要求https
+①后台更改，把http改成https
+②将targetSdkVersion 改成27或者以下
+③在清单文件中加入权限：android:usesCleartextTraffic="true"
+4、刷新fragment
+public void onHiddenChanged(boolean hidden) {
+   super.onHiddenChanged(hidden);
+   if (!hidden){
+   }
+}

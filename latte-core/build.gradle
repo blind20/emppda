@@ -1,0 +1,98 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion '28.0.2'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:support-v4:28.0.0'
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:design:28.0.0'
+    api 'com.android.support:cardview-v7:28.0.0'
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Fragment依赖--更新
+    api 'me.yokeyword:fragmentation:1.3.6'
+    api 'me.yokeyword:fragmentation-swipeback:1.3.6'
+    //字体图标
+    api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+    api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    //ButterKnife依赖
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    //网络请求依赖
+    api 'com.squareup.okio:okio:1.13.0'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    //Loader依赖
+    implementation 'com.wang.avi:library:2.1.3'
+    //JSON依赖Android版
+    api 'com.alibaba:fastjson:1.1.57.android'
+    //Log
+    implementation 'com.orhanobut:logger:2.1.1'
+    //沉浸式状态栏
+    api 'com.github.niorgai:StatusBarCompat:2.1.3'
+    //Google AutoValue
+    compileOnly 'com.google.auto.value:auto-value:1.4.1'
+    annotationProcessor "com.google.auto.value:auto-value:1.4.1"
+    //
+    api 'com.github.hotchemi:permissionsdispatcher:3.3.1'
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
+    //图片剪裁
+    implementation 'com.github.yalantis:ucrop:2.2.1-native'
+    //二维码扫描
+    implementation 'me.dm7.barcodescanner:zbar:1.9.3'
+    //工具包
+    api 'com.blankj:utilcode:1.7.1'
+    //数据库依赖
+    api 'org.greenrobot:greendao-generator:3.2.2'
+    api 'org.greenrobot:greendao:3.2.2'
+    //微信依赖（包含统计）
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
+    //cookie持久化
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    //RecyclerView依赖
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    //RecyclerView 分割线
+    api 'com.choices.divider:RecyclerView_Divider:1.0.0'
+
+    //Banner依赖
+    api 'com.bigkoo:convenientbanner:2.0.5'
+    api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+
+    //图片处理
+    api 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    api 'com.github.bumptech.glide:okhttp3-integration:4.0.0-RC0@aar'
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '28.0.0'
+                }
+            }
+        }
+    }
+}

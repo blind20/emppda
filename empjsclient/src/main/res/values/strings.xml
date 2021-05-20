@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">查验终端插件</string>
+
+
+    <string name="visibility">打开可见</string>
+    <string name="find_device">查找设备</string>
+    <string name="bonded_device">已绑定</string>
+    <string name="action_settings">设置</string>
+    <string name="waiting">等待连接</string>
+    <string name="stop_waiting">停止监听</string>
+    <string name="disconnect">断开</string>
+    <string name="hello">发送Hello</string>
+    <string name="hi">发送Hi</string>
+
+    <string-array name="setting_items">
+        <item>执法记录仪IP地址</item>
+        <item>执法记录仪端口</item>
+        <item>视频系统服务器IP</item>
+        <item>视频系统端口</item>
+        <item>检查版本</item>
+        <item>选择固件厂商</item>
+    </string-array>
+
+    <string-array name="factory">
+        <item>HIK固件</item>
+        <item>MD固件</item>
+        <item>JS固件</item>
+    </string-array>
+
+    <string-array name="receive_param_cn">
+        <item>查验流水号</item>
+        <item>车辆识别代号</item>
+        <item>查验区序号</item>
+        <item>查验区通道</item>
+        <item>处理类型</item>
+        <item>查验时间</item>
+        <item>查验次数</item>
+        <item>身份证明号码</item>
+        <item>号牌种类</item>
+        <item>号牌号码</item>
+    </string-array>
+
+    <string-array name="receive_param">
+        <item>cylsh</item>
+        <item>clsbdh</item>
+        <item>cyqxh</item>
+        <item>cyqtd</item>
+        <item>cllx</item>
+        <item>cysj</item>
+        <item>cycs</item>
+        <item>sfzmhm</item>
+        <item>hpzl</item>
+        <item>hphm</item>
+    </string-array>
+
+    <string-array name="entries_list_preference">
+        <item>IT</item>
+        <item>Commerce</item>
+        <item>HR</item>
+    </string-array>
+    <string-array name="entryvalues_list_preference">
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+    </string-array>
+</resources>
